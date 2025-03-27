@@ -1,0 +1,48 @@
+server:
+  port: 8087
+spring:
+  #application:
+    #name: aiapp-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/aiapp?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  ai:
+    openai:
+      chat:
+        options:
+          model: gpt-3.5-turbo
+          max-tokens: 2048
+      base-url: https://api.openai.com/v1
+      api-key: YOUR_OPENAI_API_KEY
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# 日志配置
+logging:
+  level:
+    com.eplugger: DEBUG  # 应用日志级别
+    org.springframework.web: INFO  # Spring Web日志级别
+    org.hibernate.SQL: DEBUG  # SQL日志
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # SQL参数日志
+
+# Dify API配置
+dify:
+  api:
+    # 官方API地址
+    base-url: https://api.dify.ai/v1
+    # 本地部署地址示例
+    # base-url: http://localhost:5000/v1
+    api-key: YOUR_DIFY_API_KEY
